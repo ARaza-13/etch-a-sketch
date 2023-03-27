@@ -1,0 +1,20 @@
+/* Grid Setup 16x16 */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 384px;
+    height: 384px;
+    outline-style: solid;
+}
+
+.square {
+    outline-style: solid;
+    outline-width: thin;
+    width: 24px;
+    height: 24px;
+}
+
+/* Hover Changing Color Effect */
+.color {
+    background-color: black;
+}
