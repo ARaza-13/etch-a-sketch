@@ -1,17 +1,17 @@
 /* Grid Setup 16x16 */
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 384px;
-    height: 384px;
+    width: 650px;
+    height: 650px;
     outline-style: solid;
+}
+
+.row {
+    display: flex;
 }
 
 .square {
     outline-style: solid;
     outline-width: thin;
-    width: 24px;
-    height: 24px;
 }
 
 /* Hover Changing Color Effect */
