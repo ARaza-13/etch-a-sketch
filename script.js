@@ -44,23 +44,42 @@ function createGrid(rows) {
             const div = document.createElement('div');
             div.classList.add('square');
             div.style.cssText = `width: ${cellDims}px; height: ${cellDims}px;`;
-            addColor(div);
             row.appendChild(div);
         }
         container.appendChild(row);
     }
 }
 
-// Adds EventListener to each Grid Square that applies color when Hovering with the Mouse //
-function addColor(gridSquare) {
-    gridSquare.addEventListener("mouseover", () => {
-        // gridSquare.classList.add('color');
-        let randomColors = changeColor();
-        gridSquare.style.backgroundColor = `rgb(${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
-    });
+// Adds EventListener to each Grid Square that applies a random color when Hovering with the Mouse //
+function addRandomColor() {
+    for (let i = 0; i < rows.length; i++) {
+        let row = rows[i];
+        let gridSquares = row.children;
+        for (let j = 0; j < gridSquares.length; j++) {
+            let gridSquare = gridSquares[j];
+            gridSquare.addEventListener("mouseover", () => {
+                let randomColors = changeColor();
+                gridSquare.style.backgroundColor = `rgb(${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+            });
+        }
+    }
 }
 
-// Adds RGB Effect over each Grid Square when hovering over with the mouse
+// Adds EventListener to each Grid Square that applies a black color when Hovering with the Mouse //
+function addBlackColor() {
+    for (let i = 0; i < rows.length; i++) {
+        let row = rows[i];
+        let gridSquares = row.children;
+        for (let j = 0; j < gridSquares.length; j++) {
+            let gridSquare = gridSquares[j];
+            gridSquare.addEventListener("mouseover", () => {
+               gridSquare.style.backgroundColor = 'black'; 
+            });
+        }
+    }
+}
+
+// Selects 3 random values to be used for RGB color //
 function changeColor() {
     const randomColors = [];
 
@@ -76,9 +95,9 @@ function changeColor() {
 function removeColor() {
     for (let i = 0; i < rows.length; i++) {
         let row = rows[i];
-        gridSquares = row.children;
+        let gridSquares = row.children;
         for (let j = 0; j < gridSquares.length; j++) {
-            gridSquare = gridSquares[j];
+            let gridSquare = gridSquares[j];
             gridSquare.style.backgroundColor = 'inherit';
         }
     }
