@@ -1,4 +1,9 @@
 const container = document.querySelector('.container');
+const rows = container.children;
+const resetBtn = document.querySelector('.reset-btn');
+const blackBtn = document.querySelector('.black-btn');
+const colorBtn = document.querySelector('.color-btn');
+
 
 // Allow User Input to Generate New Grid Size //
 function changeGrid() {
@@ -49,8 +54,34 @@ function createGrid(rows) {
 // Adds EventListener to each Grid Square that applies color when Hovering with the Mouse //
 function addColor(gridSquare) {
     gridSquare.addEventListener("mouseover", () => {
-        gridSquare.classList.add('color');
+        // gridSquare.classList.add('color');
+        let randomColors = changeColor();
+        gridSquare.style.backgroundColor = `rgb(${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
     });
+}
+
+// Adds RGB Effect over each Grid Square when hovering over with the mouse
+function changeColor() {
+    const randomColors = [];
+
+    for (let i = 1; i <= 3; i++) {
+        let randomNum = Math.floor(Math.random() * 256);
+        randomColors.push(randomNum);
+    }
+    return randomColors;
+}
+
+// Add Event Listener to Reset Button to Remove all color from the Grid //
+// Loops through the child of each row to access each individual grid square //
+function removeColor() {
+    for (let i = 0; i < rows.length; i++) {
+        let row = rows[i];
+        gridSquares = row.children;
+        for (let j = 0; j < gridSquares.length; j++) {
+            gridSquare = gridSquares[j];
+            gridSquare.style.backgroundColor = 'inherit';
+        }
+    }
 }
 
 createGrid(16);
