@@ -12,7 +12,11 @@
         <button class="layout-btn" onclick="replaceGrid()">Change Layout</button>
         <button class="reset-btn" onclick="removeColor()">Reset</button>
         <button class="black-btn" onclick="addBlackColor()">Black</button>
-        <button class="color-btn" onclick="addRandomColor()">RGB</button>
+        <button class="random-btn" onclick="addRandomColor()">RGB</button>
+        <button class="color-btn">
+            <label for="colorpicker">Color Picker:</label>
+            <input type="color" id="colorpicker" value="#0000ff" onclick="pickColor()">
+        </button>
         <div class="container"></div>
     </body>
 </html>
