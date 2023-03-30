@@ -1,35 +1,36 @@
-const container = document.querySelector('.container');
+// Store every div square in array for easy access in changing each div color
+let gridSquares = [];
+
+const grid = document.querySelector('.grid');
 const resetBtn = document.querySelector('.reset-btn');
 const blackBtn = document.querySelector('.black-btn');
 const randomBtn = document.querySelector('.random-btn');
 const colorBtn = document.querySelector('.color-btn');
+const slider = document.getElementById('slider');
+const sliderLabel = document.querySelector('.slider-label');
 
-// Store every div square in array for easy access in changing each div color
-let gridSquares = [];
+// Add functionality to buttons and slider //
+resetBtn.onclick = () => removeColor();
+blackBtn.onclick = () => addBlackColor();
+randomBtn.onclick = () => addRandomColor();
+colorBtn.oninput = () => pickColor();
+slider.onmousemove = (e) => updateSliderValue(e.target.value);
+slider.onchange = (e) => replaceGrid(e.target.value);
 
-
-// Allow User Input to Generate New Grid Size //
-function changeGrid() {
-    let input = prompt("Enter the New Grid Layout (1-100)");
-
-    while (Number.isNaN(Number(input)) || input < 1 || input > 100) {
-        input = prompt("Please Enter a Valid Input (1-100)");
-    }
-    return Number(input);
-    
+function updateSliderValue(value) {
+    sliderLabel.textContent = `Grid Size: ${value} x ${value}`;
 }
 
 // Replace Current Grid with New Grid //
-function replaceGrid() {
+function replaceGrid(rows) {
     removeGrid();
-    const newRows = changeGrid();
-    createGrid(newRows);
+    createGrid(rows);
 }
 
-// Remove the Current Grid by Looping Through Each Row//
+// Remove the Current Grid by Looping Through and Removing Each Row //
 function removeGrid() {
-    while (container.firstChild) {
-        container.removeChild(container.lastChild);
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
     }
 }
 
@@ -37,7 +38,7 @@ function removeGrid() {
 // Sets Grid Square Height and Width Based off Grid Dimensions //
 function createGrid(rows) {
     gridSquares.length = 0;  // resets div squares array to 0 for whenever we want to change grid layout
-    const cellDims = 650 / rows;  // 650 is the width and height of the container
+    const cellDims = 650 / rows;  // 650 is the width and height of the grid container
 
     for (let i = 1; i <= rows; i++) {
         const row = document.createElement('div')
@@ -51,7 +52,7 @@ function createGrid(rows) {
             gridSquares.push(div);
             row.appendChild(div);
         }
-        container.appendChild(row);
+        grid.appendChild(row);
     }
 }
 

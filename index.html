@@ -9,14 +9,19 @@
         <script src="script.js" defer ></script>
     </head>
     <body>
-        <button class="layout-btn" onclick="replaceGrid()">Change Layout</button>
-        <button class="reset-btn" onclick="removeColor()">Reset</button>
-        <button class="black-btn" onclick="addBlackColor()">Black</button>
-        <button class="random-btn" onclick="addRandomColor()">RGB</button>
-        <button class="color-btn">
-            <label for="colorpicker">Color Picker:</label>
-            <input type="color" id="colorpicker" value="#0000ff" onclick="pickColor()">
-        </button>
-        <div class="container"></div>
+        <div class="buttons">
+            <button class="reset-btn">Reset</button>
+            <button class="black-btn">Black</button>
+            <button class="random-btn">RGB</button>
+            <button class="color-btn">
+                <label for="colorpicker">Color Picker:</label>
+                <input type="color" id="colorpicker" value="#0000ff">
+            </button>
+            <div class="slider-container">
+                <p class="slider-label">Grid Size: 16 x 16</p>
+                <input type="range" min="1" max="100" value="16" id="slider">
+            </div>
+        </div>
+        <div class="grid"></div>
     </body>
 </html>

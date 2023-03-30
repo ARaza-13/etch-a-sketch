@@ -1,5 +1,5 @@
 /* Grid Setup 16x16 */
-.container {
+.grid {
     width: 650px;
     height: 650px;
     outline-style: solid;
@@ -13,3 +13,15 @@
     outline-style: solid;
     outline-width: thin;
 }
+
+/* .slider-container {
+    width: 100%;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+} */
