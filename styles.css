@@ -12,6 +12,11 @@
 .square {
     outline-style: solid;
     outline-width: thin;
+    opacity: 1;
+}
+
+.remove-grid-lines {
+    outline-style: none;
 }
 
 /* .slider-container {

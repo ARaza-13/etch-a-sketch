@@ -1,21 +1,44 @@
 // Store every div square in array for easy access in changing each div color
 let gridSquares = [];
 
+// Create a variable that stores a boolean to track whether or not the mouse clicked //
+// if mouse is clicked, then we can color thr grid //
+let mouseClicked = false;
+
 const grid = document.querySelector('.grid');
 const resetBtn = document.querySelector('.reset-btn');
 const blackBtn = document.querySelector('.black-btn');
 const randomBtn = document.querySelector('.random-btn');
+const darkerBtn = document.querySelector('.darker-btn');
+const eraserBtn = document.querySelector('.eraser');
 const colorBtn = document.querySelector('.color-btn');
+const gridLines = document.querySelector('.grid-lines');
+const paintBrush = document.querySelector('.paintbrush');
 const slider = document.getElementById('slider');
 const sliderLabel = document.querySelector('.slider-label');
 
 // Add functionality to buttons and slider //
+grid.onclick = () => activatePencil();
 resetBtn.onclick = () => removeColor();
 blackBtn.onclick = () => addBlackColor();
 randomBtn.onclick = () => addRandomColor();
+eraserBtn.onclick = () => eraseColor();
 colorBtn.oninput = () => pickColor();
+gridLines.onclick = () => toggleGridLines();
 slider.onmousemove = (e) => updateSliderValue(e.target.value);
 slider.onchange = (e) => replaceGrid(e.target.value);
+
+// if we click the mouse when hovering over the grid, the boolean variable will be "true"
+// thus allowing us to apply color, and clicking again will stop applying color
+function activatePencil() {
+    if (!mouseClicked) {
+        mouseClicked = true;
+        paintBrush.textContent = "Paint Brush: On";
+    } else {
+        mouseClicked = false;
+        paintBrush.textContent = "Paint Brush: Off";
+    }
+}
 
 function updateSliderValue(value) {
     sliderLabel.textContent = `Grid Size: ${value} x ${value}`;
@@ -59,9 +82,11 @@ function createGrid(rows) {
 // Adds EventListener to each Grid Square that applies a random color when Hovering with the Mouse //
 function addRandomColor() {
     gridSquares.forEach((square) => {
-        square.addEventListener("mouseover", () => {
-            let randomColors = getRandomColor();
-            square.style.backgroundColor = `rgb(${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+        square.addEventListener("mousemove", () => {
+            if (mouseClicked) {
+                let randomColors = getRandomColor();
+                square.style.backgroundColor = `rgb(${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+            }
     });
 });
 }
@@ -81,10 +106,19 @@ function getRandomColor() {
 // Adds EventListener to each Grid Square that applies a black color when Hovering with the Mouse //
 function addBlackColor() {
     gridSquares.forEach((square) => {
-        square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = 'black'; 
+        square.addEventListener("mousemove", () => {
+            if (mouseClicked) square.style.backgroundColor = 'black'; 
     });
 });
+}
+
+// Function for the Eraser button //
+function eraseColor() {
+    gridSquares.forEach((square) => {
+        square.addEventListener("mousemove", () => {
+            if (mouseClicked) square.style.backgroundColor = 'inherit'; 
+        });
+    });
 }
 
 // Function to pick color from color wheel //
@@ -92,16 +126,23 @@ function pickColor() {
     const colorValue = document.getElementById("colorpicker").value;
     
     gridSquares.forEach((square) => {
-        square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = `${colorValue}`;
+        square.addEventListener("mousemove", () => {
+            if (mouseClicked) square.style.backgroundColor = `${colorValue}`;
+        });
     });
-});
 }
 
 // Reset Button to Remove all color from the Grid //
 function removeColor() {
     gridSquares.forEach((square) => {
         square.style.backgroundColor = 'inherit'; 
+    });
+}
+
+// Function to toggle the grid lines on/off //
+function toggleGridLines() {
+    gridSquares.forEach((square) => {
+        square.classList.toggle('square'); 
     });
 }
 
