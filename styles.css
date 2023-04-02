@@ -19,14 +19,39 @@
     outline-style: none;
 }
 
-/* .slider-container {
-    width: 100%;
+/* Page Layout */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 50px;
 }
 
-#slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
+.side-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+}
+
+/* Button and slider styling */
+button {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+button:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: darkgray;
+}
+
+.slider-container, h1 {
+    text-align: center;
+}
+
+button, input {
     cursor: pointer;
-} */
+}

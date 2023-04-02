@@ -9,7 +9,6 @@ const grid = document.querySelector('.grid');
 const resetBtn = document.querySelector('.reset-btn');
 const blackBtn = document.querySelector('.black-btn');
 const randomBtn = document.querySelector('.random-btn');
-const darkerBtn = document.querySelector('.darker-btn');
 const eraserBtn = document.querySelector('.eraser');
 const colorBtn = document.querySelector('.color-btn');
 const gridLines = document.querySelector('.grid-lines');
@@ -142,7 +141,7 @@ function removeColor() {
 // Function to toggle the grid lines on/off //
 function toggleGridLines() {
     gridSquares.forEach((square) => {
-        square.classList.toggle('square'); 
+        square.classList.toggle('remove-grid-lines'); 
     });
 }
 
